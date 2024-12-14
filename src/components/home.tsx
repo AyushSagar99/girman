@@ -1,4 +1,4 @@
-import React from 'react'
+
 import girman from "../assets/Group 1.png"
 
 export default function Home() {
