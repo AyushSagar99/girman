@@ -20,6 +20,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import notfound from "./assets/Group 143.png"
+
 function App() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
@@ -69,9 +71,7 @@ function App() {
 
       setFilteredData(results);
 
-      if (results.length === 0) {
-        setError('No results found for your search.');
-      }
+      
     } catch (err) {
       setError('An error occurred while searching. Please try again later.');
       console.error(err);
@@ -156,7 +156,7 @@ function App() {
           ))
         ) : (
           isSearched &&
-          !error && <p className="text-gray-700 mt-4 text-center">No results found</p>
+          !error && <img src={notfound} width={500} height={500}/>
         )}
       </div>
     </div>
