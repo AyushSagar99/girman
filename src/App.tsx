@@ -1,6 +1,10 @@
 import { CiSearch } from 'react-icons/ci';
 import Home from './components/home';
 import { useState, useEffect } from 'react';
+import pfp from "./assets/Ellipse 2.png"
+import pic from "./assets/Rectangle 1.png"
+import { IoIosCall } from "react-icons/io";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import {
   Card,
   CardContent,
@@ -102,7 +106,7 @@ function App() {
           placeholder="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border border-gray-300 pl-10 p-2 w-[40rem] outline-none rounded-lg shadow-md focus:ring-2 focus:ring-blue-500"
+          className="border border-gray-300 pl-10 p-2 w-[20rem] sm:w-[40rem] outline-none rounded-lg shadow-md focus:ring-2 focus:ring-blue-500"
           aria-label="Search"
         />
       </form>
@@ -114,33 +118,40 @@ function App() {
           filteredData.map((item, index) => (
             <Card
               key={index}
-              className="shadow-lg bg-white rounded-lg hover:shadow-xl transition-shadow duration-300 w-[18rem] "
+              className="shadow-lg bg-white rounded-lg hover:shadow-xl transition-shadow duration-300 w-[20rem] "
             >
-              <CardHeader className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-100 to-blue-200">
-                <CardTitle className="text-xl font-bold text-blue-800">
+              <CardHeader className="p-4  ">
+                <CardTitle className="text-3xl font-bold">
+                  <img src={pfp} width={80} height={90} />
                   {item.first_name} {item.last_name}
                 </CardTitle>
-                <CardDescription className="text-gray-600">
-                  Contact: {item.contact_number}
+                <CardDescription className="text-gray-600 flex justify-start items-center">
+                <FaMapMarkerAlt /> {item.city}
                 </CardDescription>
               </CardHeader>
               <div className="flex">
                 <CardContent className="p-4">
-                  <p className="text-gray-700">
-                    <strong>City:</strong> {item.city}
+                  <p className="text-gray-700 flex justify-start items-center gap-2">
+                  <IoIosCall className='text-xl' /> {item.contact_number}
                   </p>
+                  <div className='flex-col justify-start items-start'>
+                  <p className='flex text-gray-500 text-xs'>Available on phone</p>
+                  </div>
                 </CardContent>
+                
+                
                 <CardFooter className="p-4 text-right text-gray-500">
-                  <Dialog>
+                
+                  <Dialog >
                     <DialogTrigger
-                      className="bg-black text-white p-2 rounded-md"
+                      className="bg-black text-white p-2 rounded-md flex items-end justify-end"
                       onClick={() => setSelectedUser(item)}
                     >
                       Fetch Details
                     </DialogTrigger>
-                    <DialogContent className="h-1/2">
+                    <DialogContent className="h-1/2 w-[20rem] sm:w-[150rem] ">
                       <DialogHeader>
-                        <h1 className="text-3xl">Fetch Details</h1>
+                        <h1 className="text-3xl sm:text-center">Fetch Details</h1>
                         <p className="text-gray-500 mb-4">
                           Here are the details of the following employee
                         </p>
@@ -154,6 +165,8 @@ function App() {
                           <p>
                             <strong>Contact:</strong> {selectedUser?.contact_number}
                           </p>
+                          <p className='mb-3 mt-2'>Profile image:</p>
+                          <img src={pic} width={150} height={100} />
                         </DialogDescription>
                       </DialogHeader>
                     </DialogContent>
