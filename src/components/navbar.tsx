@@ -43,9 +43,8 @@ function Navbar() {
           </DropdownMenu>
         </div>
 
-        {/* Regular menu items for large screens */}
-        <div className="hidden md:flex flex-wrap gap-16 justify-center items-center"> {/* This hides on mobile */}
-          <a href="/">SEARCH</a>
+        <div className="hidden md:flex flex-wrap gap-16 justify-center items-center"> 
+          <a href="/" className="text-blue-700 underline underline-offset-4" >SEARCH</a>
           <a href="https://girmantech.com" target="_blank" rel="noopener noreferrer">
             WEBSITE
           </a>
