@@ -1,5 +1,4 @@
 import { CiSearch } from 'react-icons/ci';
-import './App.css';
 import Home from './components/home';
 import { useState, useEffect } from 'react';
 import {
