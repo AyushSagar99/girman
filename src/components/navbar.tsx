@@ -1,4 +1,4 @@
-import React from 'react'
+
 import logo from "../assets/Logo-2.png"
 
 function Navbar() {

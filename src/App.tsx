@@ -22,14 +22,23 @@ import {
 
 import notfound from "./assets/Group 143.png"
 
+type User = {
+  first_name: string;
+  last_name: string;
+  city: string;
+  contact_number: string;
+};
+
+
 function App() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState('');
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState<User[]>([]);
   const [isSearched, setIsSearched] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +61,7 @@ function App() {
     fetchData();
   }, []);
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSearched(true);
 
