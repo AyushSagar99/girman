@@ -142,35 +142,37 @@ function App() {
                 
                 <CardFooter className="p-4 text-right text-gray-500">
                 
-                  <Dialog >
-                    <DialogTrigger
-                      className="bg-black text-white p-2 rounded-md flex items-end justify-end"
-                      onClick={() => setSelectedUser(item)}
-                    >
-                      Fetch Details
-                    </DialogTrigger>
-                    <DialogContent className="h-1/2 w-[20rem] sm:w-[150rem] ">
-                      <DialogHeader>
-                        <h1 className="text-3xl sm:text-center">Fetch Details</h1>
-                        <p className="text-gray-500 mb-4">
-                          Here are the details of the following employee
-                        </p>
-                        <DialogTitle>
-                          {selectedUser?.first_name} {selectedUser?.last_name}
-                        </DialogTitle>
-                        <DialogDescription>
-                          <p>
-                            <strong>City:</strong> {selectedUser?.city}
-                          </p>
-                          <p>
-                            <strong>Contact:</strong> {selectedUser?.contact_number}
-                          </p>
-                          <p className='mb-3 mt-2'>Profile image:</p>
-                          <img src={pic} width={150} height={100} />
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
+                <Dialog>
+  <DialogTrigger
+    className="bg-black text-white p-2 rounded-md flex items-end justify-end"
+    onClick={() => setSelectedUser(item)}
+  >
+    Fetch Details
+  </DialogTrigger>
+  
+  <DialogContent className="h-[25rem] sm:h-1/2 w-[20rem] sm:w-[30rem]">
+    <DialogHeader className="text-left">
+      <h1 className="text-3xl text-left">Fetch Details</h1>
+      <p className="text-gray-500 mb-4 text-left">
+        Here are the details of the following employee
+      </p>
+      <DialogTitle className="text-left">
+        {selectedUser?.first_name} {selectedUser?.last_name}
+      </DialogTitle>
+      <DialogDescription className="text-left">
+        <p className="text-left">
+          <strong>Location:</strong> {selectedUser?.city}
+        </p>
+        <p className="text-left">
+          <strong>Contact Number:</strong> {selectedUser?.contact_number}
+        </p>
+        <p className="mb-3 mt-2 text-left">Profile image:</p>
+        <img src={pic} width={150} height={100} className="rounded-md" />
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
                 </CardFooter>
               </div>
             </Card>
