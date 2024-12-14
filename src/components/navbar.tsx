@@ -21,10 +21,10 @@ function Navbar() {
         <div className="flex md:hidden"> 
           <DropdownMenu>
             <DropdownMenuTrigger className="font-medium"><IoIosMenu /></DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent >
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <a href="/">SEARCH</a>
+              <DropdownMenuItem >
+                <a href="/" className="text-blue-700 underline underline-offset-4">SEARCH</a>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <a href="https://girmantech.com" target="_blank" rel="noopener noreferrer">
