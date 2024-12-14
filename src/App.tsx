@@ -1,8 +1,7 @@
 import { CiSearch } from 'react-icons/ci';
 import './App.css';
 import Home from './components/home';
-import { useState } from 'react';
-import data from './data/users.json';
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -21,23 +20,39 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const typedData = data as {
-  first_name: string;
-  last_name: string;
-  city: string;
-  contact_number: string;
-}[];
-
 function App() {
+  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [isSearched, setIsSearched] = useState(false);
-  const [error, setError] = useState<string | null>(null); 
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('http://127.0.0.1:8000/users/');
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (err) {
+        setError('An error occurred while fetching user data.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    setIsSearched(true); 
+    setIsSearched(true);
 
     if (!search.trim()) {
       setError('Please enter a search term.');
@@ -48,9 +63,8 @@ function App() {
     setError(null);
 
     try {
-
-      const results = data.filter(
-        (item) => item.first_name.toLowerCase().includes(search.toLowerCase())
+      const results = users.filter((item) =>
+        item.first_name.toLowerCase().includes(search.toLowerCase())
       );
 
       setFilteredData(results);
@@ -59,14 +73,13 @@ function App() {
         setError('No results found for your search.');
       }
     } catch (err) {
-
       setError('An error occurred while searching. Please try again later.');
-      console.error(err); 
+      console.error(err);
     }
   };
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-t from-blue-400 to- h-screen">
+    <div className="flex flex-col items-center bg-gradient-to-t from-blue-400 to- min-h-[calc(100vh-6rem)] py-10">
       <div className="mt-36">
         <Home />
       </div>
@@ -86,6 +99,7 @@ function App() {
         />
       </form>
       {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
+      {loading && <p className="text-gray-700 mt-4 text-center">Loading users...</p>}
 
       <div className="mt-10 w-[90%] flex flex-wrap gap-6 justify-center">
         {filteredData.length > 0 ? (
@@ -112,14 +126,16 @@ function App() {
                   <Dialog>
                     <DialogTrigger
                       className="bg-black text-white p-2 rounded-md"
-                      onClick={() => setSelectedUser(item)} 
+                      onClick={() => setSelectedUser(item)}
                     >
                       Fetch Details
                     </DialogTrigger>
-                    <DialogContent className='h-1/2'>
+                    <DialogContent className="h-1/2">
                       <DialogHeader>
-                        <h1 className='text-3xl'>Fetch Details</h1>
-                        <p className='text-gray-500 mb-4'>Here are the details of following employee</p>
+                        <h1 className="text-3xl">Fetch Details</h1>
+                        <p className="text-gray-500 mb-4">
+                          Here are the details of the following employee
+                        </p>
                         <DialogTitle>
                           {selectedUser?.first_name} {selectedUser?.last_name}
                         </DialogTitle>
