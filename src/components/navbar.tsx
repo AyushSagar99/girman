@@ -18,7 +18,7 @@ function Navbar() {
       <a href='/'>SEARCH</a>
       <a href='https://girmantech.com' target='/'>WEBSITE</a>
       <a href='https://www.linkedin.com/company/girmantech/' target='/'>LINKEDIN</a>
-      <a href='/'>CONTACT</a>
+      <a href='mailto:contact@girmantech.com'>CONTACT</a>
       </div>
       </div>
     </>

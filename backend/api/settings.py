@@ -29,7 +29,8 @@ ALLOWED_HOSTS = []
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5174',  # Frontend origin
+    'http://localhost:5174',
+      'https://girman-3cut.vercel.app',  # Frontend origin
 ]
 
 
