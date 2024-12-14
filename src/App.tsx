@@ -43,7 +43,7 @@ function App() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://127.0.0.1:8000/users/');
+        const response = await fetch('https://girman-xjk3.onrender.com/users/');
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }
